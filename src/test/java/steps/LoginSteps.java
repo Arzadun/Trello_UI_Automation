@@ -13,15 +13,17 @@ public class LoginSteps {
     }
     @When(": I enter my credentials")
     public void i_enter_my_credentials() {
-        System.out.println("Step 2");
+        login.writeMail();
     }
     @And(": Click on the login button")
     public void click_on_the_login_button() {
-        System.out.println("Step3");
+
+    login.clickOnLoginButton();
+
     }
     @Then(": Login is successfully")
     public void login_is_successfully() {
-        System.out.println("Step4");
+        System.out.println("Step 4");
     }
 
 
