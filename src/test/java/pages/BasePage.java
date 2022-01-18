@@ -8,7 +8,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.List;
 
 public class BasePage  {
 
@@ -30,6 +29,22 @@ public class BasePage  {
 
     public static void navigateTo(String url){
         driver.get(url);
+    }
+
+    private WebElement find (String locator){
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
+    }
+
+    public static void cleanBrowser(){
+        driver.quit();
+    }
+
+    public void writeKeys(String locator, String criteria){
+        find(locator).sendKeys(criteria);
+    }
+
+    public void clickElement(String locator){
+        find(locator).click();
     }
 
 }
