@@ -29,6 +29,7 @@ public class BasePage  {
 
     public static void navigateTo(String url){
         driver.get(url);
+        driver.manage().window().maximize();
     }
 
     private WebElement find (String locator){
@@ -40,6 +41,8 @@ public class BasePage  {
     }
 
     public void writeKeys(String locator, String criteria){
+        find(locator).clear();
+        clickElement(locator);
         find(locator).sendKeys(criteria);
     }
 
