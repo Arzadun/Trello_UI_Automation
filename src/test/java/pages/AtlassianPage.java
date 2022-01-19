@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.JavascriptExecutor;
 
 public class AtlassianPage extends BasePage {
             public AtlassianPage(){

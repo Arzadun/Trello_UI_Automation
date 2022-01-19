@@ -1,13 +1,16 @@
 package steps;
 
 import io.cucumber.java.en.*;
+import junit.framework.Assert;
 import pages.AtlassianPage;
+import pages.BoardsPage;
 import pages.LoginPage;
 
 public class LoginSteps {
 
     LoginPage login = new LoginPage();
     AtlassianPage atlassian = new AtlassianPage();
+    BoardsPage homepage = new BoardsPage();
     @Given(": I'm on the login page")
     public void i_m_on_the_login_page() {
         login.navigateToLogin();
@@ -39,14 +42,8 @@ public class LoginSteps {
     @Then(": Login is successfully")
     public void login_is_successfully() {
 
-        try
-        {
-            Thread.sleep(20000);
-        }
-        catch (InterruptedException e)
-        {
-            e.printStackTrace();
-        }
+        Assert.assertEquals(true, homepage.loginValidationElementIsPresent());
+
     }
 
 

@@ -50,4 +50,8 @@ public class BasePage  {
         find(locator).click();
     }
 
+    public boolean isDisplayed(String locator){
+        return find(locator).isDisplayed();
+    }
+
 }
