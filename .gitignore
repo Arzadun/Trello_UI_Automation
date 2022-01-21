@@ -1,1 +1,10 @@
 /gradle/
+/.gradle/
+/.idea/
+/build/
+/CucumberExtent*
+/target/
+/src/test/resources/extent.properties
+/src/test/resources/extent-config.xml
+/src/test/resources/html-config.xml
+/src/test/resources/klov.properties
