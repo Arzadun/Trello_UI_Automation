@@ -8,7 +8,7 @@ public class BoardsPage extends BasePage {
         super(driver);
     }
 
-    private String loginValidationElement = "//h3[@class='boards-page-section-header-name']";
+    private String loginValidationElement = "//h35[@class='boards-page-section-header-name']";
 
     public boolean loginValidationElementIsPresent(){
         return isDisplayed(loginValidationElement);
