@@ -54,4 +54,8 @@ public class BasePage  {
         return find(locator).isDisplayed();
     }
 
+    public String textFromElement(String locator){
+        return find(locator).getText();
+    }
+
 }

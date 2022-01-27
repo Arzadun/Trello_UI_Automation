@@ -16,6 +16,8 @@ public class BoardsPage extends BasePage {
         return isDisplayed(loginValidationElement);
     }
 
-
+    public void enterToCardValidationsWorkspace(){
+        clickElement(cardsOperationElement);
+    }
 
 }

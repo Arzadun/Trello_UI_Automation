@@ -1,7 +1,9 @@
 package steps;
 
 import io.cucumber.java.en.*;
+import org.junit.Assert;
 import pages.AtlassianPage;
+import pages.BoardDetailsPage;
 import pages.BoardsPage;
 import pages.LoginPage;
 
@@ -10,6 +12,7 @@ public class CardOperationsSteps {
     LoginPage login = new LoginPage();
     AtlassianPage atlassian = new AtlassianPage();
     BoardsPage homepage = new BoardsPage();
+    BoardDetailsPage boardPage = new BoardDetailsPage();
 
     //Background Steps
 
@@ -25,7 +28,9 @@ public class CardOperationsSteps {
 
     @When("^: I enter to my workspace$")
     public void i_enter_to_my_workspace() {
-        System.out.println("Holis");
+
+        homepage.enterToCardValidationsWorkspace();
+
     }
 
 
@@ -34,26 +39,26 @@ public class CardOperationsSteps {
 //Scenario: User is able to create new cards on lists
     @When("^: I click on Add card in a specific list$")
     public void i_click_on_add_card_in_a_specific_list() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        boardPage.addCardToList();
+
     }
 
     @And("^: I enter the title of the card$")
     public void i_enter_the_title_of_the_card() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        boardPage.addCardTitle("Automated Card");
+
     }
 
     @And("^: Click on the Add card button$")
     public void click_on_the_add_card_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        boardPage.submitCard();
     }
 
     @Then("^: The card is created$")
     public void the_card_is_created() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        Assert.assertEquals("failure - strings are not equal", "Automated Card",boardPage.getCreatedCardTitle());
     }
 
     //Scenario: User is able to update existing cards on lists
