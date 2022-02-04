@@ -8,6 +8,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 
 public class BasePage  {
 
@@ -57,5 +59,15 @@ public class BasePage  {
     public String textFromElement(String locator){
         return find(locator).getText();
     }
+
+    public List<WebElement> bringAllElements(String locator){
+        return driver.findElements(By.className(locator));
+    }
+
+    public String getFirstElementOnList(List<String> elements){
+        return elements.get(0);
+    }
+
+
 
 }

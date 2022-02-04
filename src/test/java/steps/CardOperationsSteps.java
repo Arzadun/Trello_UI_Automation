@@ -23,32 +23,22 @@ public class CardOperationsSteps {
         login.clickOnLoginButton();
         atlassian.writePassword();
         atlassian.clickOnLoginButton();
-
     }
 
     @When("^: I enter to my workspace$")
     public void i_enter_to_my_workspace() {
-
         homepage.enterToCardValidationsWorkspace();
-
     }
-
-
-
 
 //Scenario: User is able to create new cards on lists
     @When("^: I click on Add card in a specific list$")
     public void i_click_on_add_card_in_a_specific_list() {
-
         boardPage.addCardToList();
-
     }
 
     @And("^: I enter the title of the card$")
     public void i_enter_the_title_of_the_card() {
-
         boardPage.addCardTitle("Automated Card");
-
     }
 
     @And("^: Click on the Add card button$")
@@ -65,8 +55,7 @@ public class CardOperationsSteps {
 
     @When("^: I open the first card in a specific list$")
     public void i_open_the_first_card_in_a_specific_list() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
     }
     @And("^: I update the description of the card$")
     public void i_update_the_description_of_the_card() {

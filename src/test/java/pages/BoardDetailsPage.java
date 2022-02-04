@@ -1,5 +1,10 @@
 package pages;
 
+import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class BoardDetailsPage extends BasePage {
 
     public BoardDetailsPage(){
@@ -20,6 +25,8 @@ public class BoardDetailsPage extends BasePage {
 
     private String createdCard = "(//span[@class='list-card-title js-card-name'])[1]";
 
+    private String cardsOnList = "list-card-details js-card-details";
+
     public void addCardToList(){
         clickElement(toDoList+addCardButton);
     }
@@ -36,6 +43,23 @@ public class BoardDetailsPage extends BasePage {
         return textFromElement(createdCard);
     }
 
+    public String getFirstCardOfList(List <String> list){
+        return getFirstElementOnList(list);
+    }
+// TODO : Provide list name and the fetch the elements from list
+    public List<String> clickFirstCardOnList(){
+        List<WebElement> list = bringAllElements(cardsOnList);
+        List<String> stringsFromList = new ArrayList<String>();
+        for (WebElement e :list){
+            stringsFromList.add(e.getText());
+        }
+        return stringsFromList;
+        }
 
 
-}
+        
+    }
+
+
+
+
