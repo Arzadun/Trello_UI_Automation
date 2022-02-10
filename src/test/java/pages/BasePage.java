@@ -61,7 +61,7 @@ public class BasePage  {
     }
 
     public List<WebElement> bringAllElements(String locator){
-        return driver.findElements(By.className(locator));
+        return driver.findElements(By.xpath(locator));
     }
 
     public String getFirstElementOnList(List<String> elements){

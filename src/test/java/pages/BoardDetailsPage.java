@@ -1,15 +1,17 @@
 package pages;
 
 import org.openqa.selenium.WebElement;
+import org.w3c.dom.ls.LSOutput;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BoardDetailsPage extends BasePage {
 
-    public BoardDetailsPage(){
+    public BoardDetailsPage() {
         super(driver);
     }
+    private String firstElementOnList = "";
 
     private String toDoList = "(//div[@class='list js-list-content'])[1]";
 
@@ -25,40 +27,72 @@ public class BoardDetailsPage extends BasePage {
 
     private String createdCard = "(//span[@class='list-card-title js-card-name'])[1]";
 
-    private String cardsOnList = "list-card-details js-card-details";
+    private String cardsOnList = "//span[@class='list-card-title js-card-name']";
 
-    public void addCardToList(){
-        clickElement(toDoList+addCardButton);
+    private String saveButtonEditMode = "//input[@class='nch-button nch-button--primary wide js-save-edits']";
+
+    public void addCardToList() {
+        clickElement(toDoList + addCardButton);
     }
 
-    public void addCardTitle(String text){
+    public void addCardTitle(String text) {
         writeKeys(addTitle, text);
     }
 
-    public void submitCard(){
+    public void submitCard() {
         clickElement(submitCardButton);
     }
 
-    public String getCreatedCardTitle(){
+    public String getCreatedCardTitle() {
         return textFromElement(createdCard);
     }
 
-    public String getFirstCardOfList(List <String> list){
+    public String getFirstCardOfList(List<String> list) {
         return getFirstElementOnList(list);
     }
-// TODO : Provide list name and the fetch the elements from list
-    public List<String> clickFirstCardOnList(){
-        List<WebElement> list = bringAllElements(cardsOnList);
+
+    // TODO : Provide list name and then fetch the elements from list
+    public String getFirstCardOnList(String listName) {
+        firstElementOnList = "//h2[text()[contains(.,'"+listName+"')]]/parent::div/following-sibling::div//a//span";
+        return firstElementOnList;
+    }
+       /* List<WebElement> list = bringAllElements(cardsOnList);
         List<String> stringsFromList = new ArrayList<String>();
-        for (WebElement e :list){
+        for (WebElement e : list) {
             stringsFromList.add(e.getText());
         }
-        return stringsFromList;
+
+
+        for (int i = 0; i < stringsFromList.size(); i++) {
+            stringsFromList.get(i);
+            String abc = stringsFromList.get(i);
+            if ( listName == stringsFromList.get(i)){
+
+                firstElementOnList = "//h2[text()[contains(.,'To Do')]]/parent::div/following-sibling::div//a//span";
+
+                return firstElementOnList;
+            }
         }
+        return  "List not found";
+        }*/
 
-
-        
+    public void clickFirstCardOnList(){
+        clickElement(firstElementOnList);
     }
+
+    public void saveChanges(){
+        clickElement(saveButtonEditMode);
+    }
+
+    public void updateCardTitle(String text){
+        writeKeys(firstElementOnList, text);
+    }
+    public String getFirstCardOnListText() {
+        return textFromElement(firstElementOnList);
+    }
+
+    }
+
 
 
 

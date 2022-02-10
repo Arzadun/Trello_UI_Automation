@@ -55,22 +55,20 @@ public class CardOperationsSteps {
 
     @When("^: I open the first card in a specific list$")
     public void i_open_the_first_card_in_a_specific_list() {
-
+        boardPage.getFirstCardOnList("To Do");
+        boardPage.clickFirstCardOnList();
     }
     @And("^: I update the description of the card$")
     public void i_update_the_description_of_the_card() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        boardPage.updateCardTitle("cardName updated");
     }
     @And("^: Click on save button$")
     public void click_on_save_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        boardPage.saveChanges();
     }
     @Then("^: The card is updated$")
     public void the_card_is_updated() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        Assert.assertEquals("failure - strings are not equal", "cardName updated", boardPage.getFirstCardOnListText());
     }
 
     //Scenario: User is able to archive cards on lists
