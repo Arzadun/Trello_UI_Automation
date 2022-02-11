@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.w3c.dom.ls.LSOutput;
 
@@ -31,6 +32,12 @@ public class BoardDetailsPage extends BasePage {
 
     private String saveButtonEditMode = "//input[@class='nch-button nch-button--primary wide js-save-edits']";
 
+    private String titleUpdateField =  "//textarea[@class='mod-card-back-title js-card-detail-title-input']";
+
+    private String closeEditModeButton = "//a[@class='icon-md icon-close dialog-close-button js-close-window']";
+
+    private String titleUpdateFieldNotHidden = "//textarea[@class='mod-card-back-title js-card-detail-title-input is-editing']";
+
     public void addCardToList() {
         clickElement(toDoList + addCardButton);
     }
@@ -53,7 +60,7 @@ public class BoardDetailsPage extends BasePage {
 
     // TODO : Provide list name and then fetch the elements from list
     public String getFirstCardOnList(String listName) {
-        firstElementOnList = "//h2[text()[contains(.,'"+listName+"')]]/parent::div/following-sibling::div//a//span";
+        firstElementOnList = "//h2[text()[contains(.,'"+listName+"')]]/parent::div/following-sibling::div//a";
         return firstElementOnList;
     }
        /* List<WebElement> list = bringAllElements(cardsOnList);
@@ -85,11 +92,18 @@ public class BoardDetailsPage extends BasePage {
     }
 
     public void updateCardTitle(String text){
-        writeKeys(firstElementOnList, text);
+        clickElement(titleUpdateField);
+        textAreaSetValue(titleUpdateFieldNotHidden, text);
     }
+
     public String getFirstCardOnListText() {
         return textFromElement(firstElementOnList);
     }
+
+    public void closeEditModal(){
+        clickElement(closeEditModeButton);
+    }
+
 
     }
 

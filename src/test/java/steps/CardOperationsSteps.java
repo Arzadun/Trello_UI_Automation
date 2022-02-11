@@ -64,7 +64,7 @@ public class CardOperationsSteps {
     }
     @And("^: Click on save button$")
     public void click_on_save_button() {
-        boardPage.saveChanges();
+        boardPage.closeEditModal();
     }
     @Then("^: The card is updated$")
     public void the_card_is_updated() {

@@ -1,10 +1,12 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,13 +24,15 @@ public class BasePage  {
         driver = new ChromeDriver(chromeOptions);
         wait = new WebDriverWait(driver,10);
 
+
     }
 
     public BasePage(WebDriver driver){
         BasePage.driver = driver;
         wait = new WebDriverWait(driver,10);
-    }
 
+    }
+    Actions actions = new Actions(driver);
     public static void navigateTo(String url){
         driver.get(url);
         driver.manage().window().maximize();
@@ -42,12 +46,12 @@ public class BasePage  {
         driver.quit();
     }
 
-    public void writeKeys(String locator, String criteria){
+    public void writeKeys(String locator, String criteria) {
         find(locator).clear();
         clickElement(locator);
         find(locator).sendKeys(criteria);
-    }
 
+    }
     public void clickElement(String locator){
         find(locator).click();
     }
@@ -66,6 +70,13 @@ public class BasePage  {
 
     public String getFirstElementOnList(List<String> elements){
         return elements.get(0);
+    }
+
+    public void textAreaSetValue(String locator, String criteria){
+        clickElement(locator);
+        find(locator).clear();
+        find(locator).sendKeys(criteria);
+
     }
 
 
