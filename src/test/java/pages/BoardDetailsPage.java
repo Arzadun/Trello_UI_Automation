@@ -38,6 +38,10 @@ public class BoardDetailsPage extends BasePage {
 
     private String titleUpdateFieldNotHidden = "//textarea[@class='mod-card-back-title js-card-detail-title-input is-editing']";
 
+    private String archiveCardButton = "//a[@class='button-link js-archive-card']";
+
+    public String titleFirstCard = "";
+
     public void addCardToList() {
         clickElement(toDoList + addCardButton);
     }
@@ -61,6 +65,7 @@ public class BoardDetailsPage extends BasePage {
     // TODO : Provide list name and then fetch the elements from list
     public String getFirstCardOnList(String listName) {
         firstElementOnList = "//h2[text()[contains(.,'"+listName+"')]]/parent::div/following-sibling::div//a";
+        titleFirstCard = textFromElement(firstElementOnList);
         return firstElementOnList;
     }
        /* List<WebElement> list = bringAllElements(cardsOnList);
@@ -103,6 +108,11 @@ public class BoardDetailsPage extends BasePage {
     public void closeEditModal(){
         clickElement(closeEditModeButton);
     }
+
+    public void archiveCard(){
+        clickElement(archiveCardButton);
+    }
+
 
 
     }

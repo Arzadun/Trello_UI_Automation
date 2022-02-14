@@ -75,18 +75,17 @@ public class CardOperationsSteps {
 
     @When("^: I click on the first card in a specific list$")
     public void i_click_on_the_first_card_in_a_specific_list() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        boardPage.getFirstCardOnList("To Do");
+        boardPage.clickFirstCardOnList();
     }
     @And("^: I click on archive button$")
     public void i_click_on_archive_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        boardPage.archiveCard();
+        boardPage.closeEditModal();
     }
     @Then("^: The card is archived$")
     public void the_card_is_archived() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        Assert.assertNotEquals("failure - strings are equal", boardPage.titleFirstCard, boardPage.getFirstCardOnListText());
     }
 
     //Scenario Outline: User is able to create cards on all lists in board
