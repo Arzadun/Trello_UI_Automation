@@ -40,6 +40,10 @@ public class BoardDetailsPage extends BasePage {
 
     private String archiveCardButton = "//a[@class='button-link js-archive-card']";
 
+    private String allList = "//textarea[@class='list-header-name mod-list-name js-list-name-input']";
+
+    private String allListAddButton = "/following::a[@class='open-card-composer js-open-card-composer']";
+
     public String titleFirstCard = "";
 
     public void addCardToList() {
@@ -113,6 +117,12 @@ public class BoardDetailsPage extends BasePage {
         clickElement(archiveCardButton);
     }
 
+//TODO: Fetch all list elements using xpath, perform a loop over the elements and select the one provided on parameter
+
+    public void clickAddButtonOnSpecificList(String listName) {
+        String providedList = "//div[@class='list js-list-content']//h2[text()[contains(.,'"+listName+"')]]";
+        clickElement(providedList + allListAddButton);
+    }
 
 
     }

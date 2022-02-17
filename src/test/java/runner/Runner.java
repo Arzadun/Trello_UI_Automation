@@ -6,6 +6,8 @@ import org.junit.AfterClass;
 import org.junit.runner.RunWith;
 import pages.BasePage;
 
+
+
 @RunWith(Cucumber.class)
 
 @CucumberOptions(
@@ -20,7 +22,7 @@ import pages.BasePage;
 )
 public class Runner {
     @AfterClass
-    public static void cleanDriver() {
+    public static void cleanDriver(){
         BasePage.cleanBrowser();
     }
 }

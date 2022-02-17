@@ -43,7 +43,13 @@ public class BasePage  {
     }
 
     public static void cleanBrowser(){
-        driver.quit();
+
+        try{
+            driver.quit();
+            driver.close();
+        }catch (Exception e){
+            System.out.println("Nothing to do with it");
+        }
     }
 
     public void writeKeys(String locator, String criteria) {

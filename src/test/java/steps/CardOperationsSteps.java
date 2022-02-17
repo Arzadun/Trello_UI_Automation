@@ -1,11 +1,11 @@
 package steps;
 
 import io.cucumber.java.en.*;
+import org.junit.After;
 import org.junit.Assert;
-import pages.AtlassianPage;
-import pages.BoardDetailsPage;
-import pages.BoardsPage;
-import pages.LoginPage;
+import pages.*;
+
+import static pages.BasePage.cleanBrowser;
 
 public class CardOperationsSteps {
 
@@ -13,6 +13,8 @@ public class CardOperationsSteps {
     AtlassianPage atlassian = new AtlassianPage();
     BoardsPage homepage = new BoardsPage();
     BoardDetailsPage boardPage = new BoardDetailsPage();
+
+
 
     //Background Steps
 
@@ -24,11 +26,11 @@ public class CardOperationsSteps {
         atlassian.writePassword();
         atlassian.clickOnLoginButton();
     }
-
     @When("^: I enter to my workspace$")
     public void i_enter_to_my_workspace() {
         homepage.enterToCardValidationsWorkspace();
     }
+
 
 //Scenario: User is able to create new cards on lists
     @When("^: I click on Add card in a specific list$")
@@ -49,6 +51,7 @@ public class CardOperationsSteps {
     @Then("^: The card is created$")
     public void the_card_is_created() {
         Assert.assertEquals("failure - strings are not equal", "Automated Card",boardPage.getCreatedCardTitle());
+        cleanBrowser();
     }
 
     //Scenario: User is able to update existing cards on lists
@@ -69,8 +72,12 @@ public class CardOperationsSteps {
     @Then("^: The card is updated$")
     public void the_card_is_updated() {
         Assert.assertEquals("failure - strings are not equal", "cardName updated", boardPage.getFirstCardOnListText());
+        cleanBrowser();
     }
-
+    @After
+    public void closeBrowser(){
+        cleanBrowser();
+    }
     //Scenario: User is able to archive cards on lists
 
     @When("^: I click on the first card in a specific list$")
@@ -86,33 +93,31 @@ public class CardOperationsSteps {
     @Then("^: The card is archived$")
     public void the_card_is_archived() {
         Assert.assertNotEquals("failure - strings are equal", boardPage.titleFirstCard, boardPage.getFirstCardOnListText());
+        cleanBrowser();
     }
 
     //Scenario Outline: User is able to create cards on all lists in board
 
-    @When("^: I click on Add card in a <list> $")
-    public void i_click_on_add_card_in_a(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @When("^: I click on Add card in a (.+) list$")
+    public void i_click_on_add_card_in_a(String listName) {
+        boardPage.clickAddButtonOnSpecificList(listName);
     }
 
     @And("^: I set the title of the card$")
     public void i_set_the_title_of_the_card() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        boardPage.addCardTitle("Automated Card");
     }
 
     @And(": I create the card by clicking on the Add card button")
     public void i_create_the_card_by_clicking_on_the_add_card_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        boardPage.submitCard();
     }
     @Then(": The card is created successfully")
     public void the_card_is_created_successfully() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
+        Assert.assertEquals("failure - strings are not equal", "Automated Card",boardPage.getCreatedCardTitle());
 
+    }
+//TODO: Fix scenario outline, background scenarios are run in each iteration.
 
 
 
