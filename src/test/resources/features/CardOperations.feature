@@ -21,13 +21,3 @@ Feature: As a user we will be able to perform CRUD operations on cards in board
     And : I click on archive button
     Then : The card is archived
 
-  Scenario Outline: User is able to create cards on all lists in board
-    When : I click on Add card in a <list> list
-    And : I set the title of the card
-    And : I create the card by clicking on the Add card button
-    Then : The card is created successfully
-    Examples:
-      |list |
-      |To Do|
-      |Doing|
-      |Done |

@@ -96,29 +96,4 @@ public class CardOperationsSteps {
         cleanBrowser();
     }
 
-    //Scenario Outline: User is able to create cards on all lists in board
-
-    @When("^: I click on Add card in a (.+) list$")
-    public void i_click_on_add_card_in_a(String listName) {
-        boardPage.clickAddButtonOnSpecificList(listName);
-    }
-
-    @And("^: I set the title of the card$")
-    public void i_set_the_title_of_the_card() {
-        boardPage.addCardTitle("Automated Card");
-    }
-
-    @And(": I create the card by clicking on the Add card button")
-    public void i_create_the_card_by_clicking_on_the_add_card_button() {
-        boardPage.submitCard();
-    }
-    @Then(": The card is created successfully")
-    public void the_card_is_created_successfully() {
-        Assert.assertEquals("failure - strings are not equal", "Automated Card",boardPage.getCreatedCardTitle());
-
-    }
-//TODO: Fix scenario outline, background scenarios are run in each iteration.
-
-
-
 }
